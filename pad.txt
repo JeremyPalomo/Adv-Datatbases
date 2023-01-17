@@ -1,0 +1,11 @@
+select * from track INNER JOIN genre using(genreid) where genre.name != 'TV Shows';
+
+select * from album INNER JOIN artist using(artistid) where artist.name = 'Creedence Clearwater Revival';
+
+select album.title as album, sum(milliseconds) * interval '1 ms' as duration from album join artist using(artistid) left join track using(albumid) where artist.name = name group by album order by album;
+
+select album.title from album join track using(artistid);
+
+select title ,count(title) from album join track using(albumid) group by title order by count;
+
+select name, count(name) from artist join album using(artistid) group by name order by count;
