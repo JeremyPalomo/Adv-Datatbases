@@ -1,4 +1,4 @@
-begin;
+
 
 CREATE TABLE geonames (
     geoname_id bigint,
@@ -21,7 +21,6 @@ CREATE TABLE geonames (
     time text,
     mod_date date
 );
-commit;
 
 load csv
   from /var/local/cs4443/geonames/allCountries.txt
