@@ -33,7 +33,7 @@ create table country_temp(
     continent text,
     tld text,
     currency_code text,
-    currency_name,
+    currency_name text,
     phone text,
     postal_code_format text,
     postal_code_regex text,
