@@ -1,6 +1,6 @@
 begin;
 
-CREATE TABLE raw.geonames (
+CREATE TABLE geonames (
     geoname_id bigint,
     name text,
     ascii_name text,
@@ -22,9 +22,9 @@ CREATE TABLE raw.geonames (
     mod_date date
 );
 load csv
-  from /tmp/geonames/allCountries.txt
+  from /var/local/cs4443/geonames/allCountries.txt
   into pgsql://appdev@/appdev
-  target table raw.geonames
+  target table geonames
   with fields terminated by '\t',
        fields optionally enclosed by '§',fields escaped by '%',
        truncate;
