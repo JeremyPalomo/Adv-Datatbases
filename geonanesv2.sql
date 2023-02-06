@@ -21,6 +21,8 @@ CREATE TABLE geonames (
     time text,
     mod_date date
 );
+commit;
+
 load csv
   from /var/local/cs4443/geonames/allCountries.txt
   into pgsql://appdev@/appdev
@@ -28,4 +30,3 @@ load csv
   with fields terminated by '\t',
        fields optionally enclosed by '§',fields escaped by '%',
        truncate;
-commit;
