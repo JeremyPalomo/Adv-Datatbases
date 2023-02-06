@@ -1,6 +1,6 @@
 begin;
 
-CREATE TABLE geonames (
+CREATE TABLE raw.geonames (
     geoname_id bigint,
     name text,
     ascii_name text,
@@ -21,5 +21,11 @@ CREATE TABLE geonames (
     time text,
     mod_date date
 );
-\copy geonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E '\t'
+load csv
+  from /tmp/geonames/allCountries.txt
+  into pgsql://appdev@/appdev
+  target table raw.geonames
+  with fields terminated by '\t',
+       fields optionally enclosed by '§',fields escaped by '%',
+       truncate;
 commit;
