@@ -22,5 +22,5 @@ CREATE TABLE raw.geonames (
     time text,
     mod_date date
 );
-\copy raw.geonames from 'allCountries.txt' with csv delimiter E '\t'
+\copy raw.geonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E '\t'
 commit;
