@@ -12,7 +12,7 @@ CREATE TABLE admin2_temp (
   ascii_name text,
   geonameid bigint
 );
-\copy admin2_temp from '/var/local/cs4443/geonames/admin2Codes.txt' with csv delimiter E'\t' or csv delimiter E'517838'
+\copy admin2_temp from '/var/local/cs4443/geonames/admin2Codes.txt' with csv delimiter E'\t' || csv delimiter E'517838'
 
 create table feature_temp (
     code text,
