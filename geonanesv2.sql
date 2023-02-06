@@ -1,7 +1,6 @@
 begin;
-create schema if not exists raw;
 
-CREATE TABLE raw.geonames (
+CREATE TABLE geonames (
     geoname_id bigint,
     name text,
     ascii_name text,
@@ -22,5 +21,5 @@ CREATE TABLE raw.geonames (
     time text,
     mod_date date
 );
-\copy raw.geonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E '\t'
+\copy geonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E '\t'
 commit;
