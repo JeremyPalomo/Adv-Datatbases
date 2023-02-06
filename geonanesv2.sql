@@ -42,4 +42,4 @@ create table country_temp(
     neighbors text,
     fips_equiv text
 );
-\copy country_temp from '/var/local/cs4443/geonames/countryInfoData.txt' with csv delimiter E'\t'
+\copy country_temp from '/var/local/cs4443/geonames/countryInfo2.txt' with csv delimiter E'\t'
