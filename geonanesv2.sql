@@ -70,7 +70,7 @@ CREATE TABLE rawlanguage(
 \copy rawlanguage from '/var/local/cs4443/geonames/iso-languagecodes.txt' delimiter E'\t' csv header
 
 CREATE TABLE rawtime(
-   country_code            text,
+   country_codes            text,
    country_timezone        text,
    country_gst             float,
    country_dst             float,
