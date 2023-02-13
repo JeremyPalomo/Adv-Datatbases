@@ -102,8 +102,8 @@ CREATE TABLE rawhierarchy(
 -------------------------------------------------------------------------------------------
 
 --CREATE DOMAIN pop AS BIGINT CHECK(value > -1);
-CREATE DOMAIN posint as BIGINT CHECK(value > 0);
-CREATE DOMAIN bool AS INT CHECK(value = 0 or value = 1 or value is null);
+CREATE DOMAIN positive as BIGINT CHECK(value > 0);
+CREATE DOMAIN bools AS INT CHECK(value = 0 or value = 1 or value is null);
 
 CREATE TABLE continents(
    continent_id    serial  NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE timezones(
 );
 
 
-INSERT INTO timezones(country_code, name, offsets)
+INSERT INTO timezones(country_code, timezone_name, offsets)
    SELECT  DISTINCT country_codes, country_timezone, country_globaloffset
    FROM    rawtime
    WHERE   name IS NOT NULL;
