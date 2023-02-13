@@ -136,4 +136,4 @@ CREATE TABLE timezones(
 INSERT INTO timezones(country_code, timezone_name, offsets)
    SELECT  DISTINCT country_codes, country_timezone, country_globaloffset
    FROM    rawtime
-   WHERE   timezone_name IS NOT NULL;
+   WHERE   country_timezone IS NOT NULL;
