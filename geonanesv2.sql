@@ -127,13 +127,13 @@ INSERT INTO continents(abrriviation, name)
 CREATE TABLE timezones(
    timezone_id     serial  NOT NULL,
    country_code    char(2),
-   name            text    NOT NULL    UNIQUE,
+   timezone_name            text    NOT NULL    UNIQUE,
    offsets    float   NOT NULL,
    PRIMARY KEY(timezone_id)         
 );
 
 
 INSERT INTO timezones(country_code, name, offsets)
-   SELECT  DISTINCT country_codes, country_name, country_globaloffset
+   SELECT  DISTINCT country_codes, country_timezone, country_globaloffset
    FROM    rawtime
    WHERE   name IS NOT NULL;
