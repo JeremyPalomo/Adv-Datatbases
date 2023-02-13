@@ -44,11 +44,54 @@ CREATE TABLE rawcountry(
 
 \copy rawcountry from '/var/local/cs4443/geonames/countryInfo2.txt' with csv delimiter E'\t'
 
-CREATE TABLE rawfeature(
-   code            text,
-   description     text,
-   comment         text
+CREATE TABLE rawalternate(
+   alternate_altid           int,
+   alternate_geoid           int,
+   alternate_isolang         text,
+   alternate_name            text,
+   alternate_prefered        int,
+   alternate_short           int,
+   alternate_collquial       int,
+   alternate_historic        int,
+   alternate_f               text,
+   alternate_t               text
 );
 
 
+\copy rawalternate from '/var/local/cs4443/geonames/alternateNamesV2.txt' with csv delimiter E'\t'
+
+CREATE TABLE rawlangauge(
+   language_iso3        text,
+   language_iso2        text,
+   language_iso1        text,
+   language_name        text
+);
+
+\copy rawlanguage from 'var/raw/local/cs4443/geonames/iso-languagecodes.txt' delimiter E'\t' csv header
+
+CREATE TABLE rawtime(
+   country_code            text,
+   country_timezone            text,
+   country_gst             float,
+   country_dst             float,
+   country_globaloffset    float
+);
+
+\copy rawtime from '/var/local/cs4443/geonames/timeZones.txt' delimiter E'\t' csv header
+
+CREATE TABLE rawfeature(
+   feature_code            text,
+   feature_description     text,
+   feature_description_two text
+);
+
 \copy rawfeature from '/var/local/cs4443/geonames/featureCodes_en.txt' with csv delimiter E'\t'
+
+CREATE TABLE rawhierarchy(
+   heirarchy_parent       BIGINT,
+   heirarchy_child       BIGINT,
+   heirarchy_code        text
+);
+
+
+\copy rawheirarchy from 'var/raw/local/cs4443/geonames/hierarchy.txt' with csv delimiter E'\t'
