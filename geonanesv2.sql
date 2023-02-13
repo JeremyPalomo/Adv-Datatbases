@@ -137,3 +137,27 @@ INSERT INTO timezones(country_code, timezone_name, offsets)
    SELECT  DISTINCT country_codes, country_timezone, country_globaloffset
    FROM    rawtime
    WHERE   country_timezone IS NOT NULL;
+
+
+
+CREATE TABLE coordinates(
+   coordinates_id        serial      NOT NULL,
+   longitude       double precision NOT NULL,
+   latitude        double precision NOT NULL,
+   PRIMARY KEY(point_id)
+);
+
+
+INSERT INTO coordinates(longitude, latitude)
+   SELECT  longitude, latitude
+   FROM    rawgeonames
+   WHERE   longitude IS NOT NULL AND latitude IS NOT NULL;
+
+
+DROP TABLE rawcountry;
+DROP TABLE rawfeature;
+DROP TABLE rawgeonames;
+DROP TABLE rawtime;
+DROP TABLE rawalternate;
+DROP TABLE rawlanguage;
+DROP TABLE rawhierarchy;
