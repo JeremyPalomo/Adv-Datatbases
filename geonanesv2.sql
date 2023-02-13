@@ -1,4 +1,4 @@
-CREATE TABLE raw.geonames(
+CREATE TABLE rawgeonames(
     geonameid       BIGINT,
     name            text,
     asciiname       text,
@@ -20,7 +20,7 @@ CREATE TABLE raw.geonames(
 );
 
 
-CREATE TABLE raw.country(
+CREATE TABLE rawcountry(
     iso             text,
     iso3            text,
     isocode         int,
@@ -42,13 +42,13 @@ CREATE TABLE raw.country(
     fips_equiv      text
 );
 
-\copy raw.country from '/var/local/cs4443/geonames/countryInfo2.txt' with csv delimiter E'\t'
+\copy rawcountry from '/var/local/cs4443/geonames/countryInfo2.txt' with csv delimiter E'\t'
 
-CREATE TABLE raw.feature(
+CREATE TABLE rawfeature(
    code            text,
    description     text,
    comment         text
 );
 
 
-\copy raw.feature from '/var/local/cs4443/geonames/featureCodes_en.txt' with csv delimiter E'\t'
+\copy rawfeature from '/var/local/cs4443/geonames/featureCodes_en.txt' with csv delimiter E'\t'

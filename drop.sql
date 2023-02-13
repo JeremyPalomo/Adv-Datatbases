@@ -1,1 +1,1 @@
-drop table raw.country, raw.geonames, raw.feature;
+drop table rawcountry, rawgeonames, rawfeature;
