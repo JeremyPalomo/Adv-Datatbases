@@ -60,14 +60,14 @@ CREATE TABLE rawalternate(
 
 \copy rawalternate from '/var/local/cs4443/geonames/alternateNamesV2.txt' with csv delimiter E'\t'
 
-CREATE TABLE rawlangauge(
+CREATE TABLE rawlanguage(
    language_iso3        text,
    language_iso2        text,
    language_iso1        text,
    language_name        text
 );
 
-\copy rawlangauge from '/var/local/cs4443/geonames/iso-languagecodes.txt' delimiter E'\t' csv header
+\copy rawlanguage from '/var/local/cs4443/geonames/iso-languagecodes.txt' delimiter E'\t' csv header
 
 CREATE TABLE rawtime(
    country_code            text,
