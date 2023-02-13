@@ -67,7 +67,7 @@ CREATE TABLE rawlangauge(
    language_name        text
 );
 
-\copy rawlangauge from 'var/local/cs4443/geonames/iso-languagecodes.txt' delimiter E'\t' csv header
+\copy rawlangauge from '/var/local/cs4443/geonames/iso-languagecodes.txt' delimiter E'\t' csv header
 
 CREATE TABLE rawtime(
    country_code            text,
@@ -94,4 +94,4 @@ CREATE TABLE rawhierarchy(
 );
 
 
-\copy rawheirarchy from 'var/local/cs4443/geonames/hierarchy.txt' with csv delimiter E'\t'
+\copy rawhierarchy from '/var/local/cs4443/geonames/hierarchy.txt' with csv delimiter E'\t'
