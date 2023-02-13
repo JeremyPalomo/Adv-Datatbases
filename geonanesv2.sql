@@ -71,7 +71,7 @@ CREATE TABLE rawlanguage(
 
 CREATE TABLE rawtime(
    country_code            text,
-   country_timezone            text,
+   country_timezone        text,
    country_gst             float,
    country_dst             float,
    country_globaloffset    float
@@ -80,7 +80,7 @@ CREATE TABLE rawtime(
 \copy rawtime from '/var/local/cs4443/geonames/timeZones.txt' delimiter E'\t' csv header
 
 CREATE TABLE rawfeature(
-   feature_code            text,
+   feature_codes            text,
    feature_description     text,
    feature_description_two text
 );
@@ -95,3 +95,45 @@ CREATE TABLE rawhierarchy(
 
 
 \copy rawhierarchy from '/var/local/cs4443/geonames/hierarchy.txt' with csv delimiter E'\t'
+
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+
+--CREATE DOMAIN pop AS BIGINT CHECK(value > -1);
+CREATE DOMAIN posint as BIGINT CHECK(value > 0);
+CREATE DOMAIN bool AS INT CHECK(value = 0 or value = 1 or value is null);
+
+CREATE TABLE continents(
+   continent_id    serial  NOT NULL,
+   abrriviation    char(2) NOT NULL,
+   name            text    NOT NULL    UNIQUE,
+   PRIMARY KEY(continent_id)
+);
+
+
+INSERT INTO continents(abrriviation, name)
+   values
+       ('AF', 'Africa'),
+       ('NA', 'North America'),
+       ('OC', 'Oceania'),
+       ('AN', 'Antarctica'),
+       ('AS', 'Asia'),
+       ('EU', 'Europe'),
+       ('SA', 'South America');
+
+
+CREATE TABLE timezones(
+   timezone_id     serial  NOT NULL,
+   country_code    char(2),
+   name            text    NOT NULL    UNIQUE,
+   offset    float   NOT NULL,
+   PRIMARY KEY(timezone_id)         
+);
+
+
+INSERT INTO timezones(country_code, name, offset)
+   SELECT  DISTINCT country_codes, country_name, country_globaloffset
+   FROM    rawtime
+   WHERE   name IS NOT NULL;
