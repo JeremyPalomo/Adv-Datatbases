@@ -102,8 +102,8 @@ CREATE TABLE rawhierarchy(
 -------------------------------------------------------------------------------------------
 
 --CREATE DOMAIN pop AS BIGINT CHECK(value > -1);
-CREATE DOMAIN positive as BIGINT CHECK(value > 0);
-CREATE DOMAIN bools AS INT CHECK(value = 0 or value = 1 or value is null);
+CREATE DOMAIN positive_int as BIGINT CHECK(value > 0);
+CREATE DOMAIN bool_ AS INT CHECK(value = 0 or value = 1 or value is null);
 
 CREATE TABLE continents(
    continent_id    serial  NOT NULL,
