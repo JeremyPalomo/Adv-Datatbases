@@ -142,13 +142,12 @@ CREATE TABLE features(
    feature_id      serial  NOT NULL,
    code            text    NOT NULL    UNIQUE,
    description     text    NOT NULL,
-   description_two text NOT NULL,
    PRIMARY KEY(feature_id)
 );
 
 
-INSERT INTO features(code, description,description_two)
-   SELECT  DISTINCT feature_codes, feature_description, feature_description_two
+INSERT INTO features(code, description)
+   SELECT  DISTINCT feature_codes, feature_description
    FROM    rawfeature
    WHERE   feature_codes <> 'null';
 
@@ -156,7 +155,7 @@ CREATE TABLE coordinates(
    coordinates_id        serial      NOT NULL,
    longitude       double precision NOT NULL,
    latitude        double precision NOT NULL,
-   PRIMARY KEY(point_id)
+   PRIMARY KEY(coordinates_id)
 );
 
 INSERT INTO coordinates(longitude, latitude)
@@ -165,24 +164,25 @@ INSERT INTO coordinates(longitude, latitude)
    WHERE   longitude IS NOT NULL AND latitude IS NOT NULL;
 
 CREATE TABLE geonames(
-   geoname_id      id      NOT NULL,
+   geoname_id      bigint      NOT NULL,
    geoname         text    NOT NULL,
-   point_id        id      NOT NULL,
-   feature_id      id      NOT NULL,
-   country_id      id      NOT NULL,
-   population      pop     NOT NULL,
+   coordinate_id        text      NOT NULL,
+   feature_id      text      NOT NULL,
+   country_id      text      NOT NULL,
+   population      bigint     NOT NULL,
    elevation       double precision NOT NULL,
-   timezone_id     id      NOT NULL,
+   timezone_id     text      NOT NULL,
    PRIMARY KEY(geoname_id),
    FOREIGN KEY(feature_id) REFERENCES features(feature_id),
    FOREIGN KEY(country_id) REFERENCES countries(country_id),
    FOREIGN KEY(timezone_id) REFERENCES timezones(timezone_id)
+   FOREIGN KEY(coordinate_id) REFERENCES coordinates(coordinate_id)
 );
 
 CREATE TABLE languages(
    language_id     serial  NOT NULL,
    language_name            text    NOT NULL UNIQUE,
-   language_iso1 text NOT NULL
+   language_iso1 text NOT NULL,
    PRIMARY KEY(language_id)
 );
 
@@ -212,8 +212,8 @@ INSERT INTO boundry(iso_code, neighbor)
 
 CREATE TABLE alternatenames(
    alt_id          serial  NOT NULL,
-   geoname_id      id      NOT NULL,
-   language_id     id      NOT NULL,
+   geoname_id      bigint      NOT NULL,
+   language_id     bigint      NOT NULL,
    alt_name        text    NOT NULL,
    prefered        sqlBool,
    short           sqlBool,
@@ -240,8 +240,8 @@ INSERT INTO currency(currency_code, currency_name)
 
 CREATE TABLE hierarchy(
    hierarchy_id    serial  NOT NULL,
-   parent          id      NOT NULL,
-   child           id      NOT NULL,
+   parent          bigint      NOT NULL,
+   child           bigint      NOT NULL,
    heirarchy_code            text    NOT NULL,
    PRIMARY KEY(hierarchy_id)
    FOREIGN KEY(parent) REFERENCES geonames(geoname_id),
@@ -254,7 +254,7 @@ INSERT INTO hierarchy(parent, child, heirarchy_code)
 
 CREATE TABLE countries(
    country_id      serial  NOT NULL,
-   geoname_id      text      NOT NULL,
+   geoname_id      bigint      NOT NULL,
    iso             text    NOT NULL,
    iso3            text    NOT NULL,
    iso_code        text    NOT NULL    UNIQUE,
@@ -264,7 +264,7 @@ CREATE TABLE countries(
    area            double precision NOT NULL,
    population      BIGINT NOT NULL,
    tld             text,
-   currency_id     text      NOT NULL,
+   currency_id     biginy      NOT NULL,
    languages       text,      
    neighbors       text,
    PRIMARY KEY(country_id),
