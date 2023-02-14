@@ -163,6 +163,42 @@ INSERT INTO coordinates(longitude, latitude)
    FROM    rawgeonames
    WHERE   longitude IS NOT NULL AND latitude IS NOT NULL;
 
+   CREATE TABLE currency(
+   currency_id     serial  NOT NULL,
+   currency_code            text    NOT NULL    UNIQUE,
+   currency_name            text    NOT NULL,
+   PRIMARY KEY(currency_id)
+);
+
+INSERT INTO currency(currency_code, currency_name)
+   SELECT  DISTINCT currency_code, currency_name
+   FROM    rawcountry
+   WHERE   currency_code IS NOT NULL AND currency_name IS NOT NULL;
+
+CREATE TABLE countries(
+   country_id      serial  NOT NULL,
+   geoname_id      bigint      NOT NULL,
+   iso             text    NOT NULL,
+   iso3            text    NOT NULL,
+   iso_code        text    NOT NULL    UNIQUE,
+   fips            text,
+   name            text    NOT NULL,
+   capital         text,
+   area            double precision NOT NULL,
+   population      BIGINT NOT NULL,
+   tld             text,
+   currency_id     bigint      NOT NULL,
+   languages       text,      
+   neighbors       text,
+   PRIMARY KEY(country_id),
+   FOREIGN KEY (currency_id) REFERENCES currencies(currency_id)
+);
+
+
+INSERT INTO countries(geoname_id, iso, iso3, iso_code, fips, name, capital, area, population, tld, currency_id, languages, neighbors)
+   SELECT  geonameid, iso, iso3, isocode, fips, name, capital, area, population, tld, 1, languages, neighbors
+   FROM rawcountry;
+
 CREATE TABLE geonames(
    geoname_id      bigint      NOT NULL,
    geoname         text    NOT NULL,
@@ -226,17 +262,7 @@ CREATE TABLE alternatenames(
    FOREIGN KEY(language_id) REFERENCES languages(language_id)
 );
 
-   CREATE TABLE currency(
-   currency_id     serial  NOT NULL,
-   currency_code            text    NOT NULL    UNIQUE,
-   currency_name            text    NOT NULL,
-   PRIMARY KEY(currency_id)
-);
 
-INSERT INTO currency(currency_code, currency_name)
-   SELECT  DISTINCT currency_code, currency_name
-   FROM    rawcountry
-   WHERE   currency_code IS NOT NULL AND currency_name IS NOT NULL;
 
 CREATE TABLE hierarchy(
    hierarchy_id    serial  NOT NULL,
@@ -252,29 +278,7 @@ INSERT INTO hierarchy(parent, child, heirarchy_code)
    SELECT heirarchy_parent, heirarchy_child, heirarchy_code
    FROM rawhierarchy;
 
-CREATE TABLE countries(
-   country_id      serial  NOT NULL,
-   geoname_id      bigint      NOT NULL,
-   iso             text    NOT NULL,
-   iso3            text    NOT NULL,
-   iso_code        text    NOT NULL    UNIQUE,
-   fips            text,
-   name            text    NOT NULL,
-   capital         text,
-   area            double precision NOT NULL,
-   population      BIGINT NOT NULL,
-   tld             text,
-   currency_id     bigint      NOT NULL,
-   languages       text,      
-   neighbors       text,
-   PRIMARY KEY(country_id),
-   FOREIGN KEY (currency_id) REFERENCES currencies(currency_id)
-);
 
-
-INSERT INTO countries(geoname_id, iso, iso3, iso_code, fips, name, capital, area, population, tld, currency_id, languages, neighbors)
-   SELECT  geonameid, iso, iso3, isocode, fips, name, capital, area, population, tld, 1, languages, neighbors
-   FROM rawcountry;
 
 DROP TABLE rawcountry;
 DROP TABLE rawfeature;
