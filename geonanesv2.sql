@@ -207,7 +207,7 @@ CREATE TABLE geonames(
    country_id      bigint      NOT NULL,
    population      bigint     NOT NULL,
    elevation       double precision NOT NULL,
-   timezone_id     bigint      NOT NULL,
+   timezone_id     bigint      NOT NULL, 
    PRIMARY KEY(geoname_id),
    FOREIGN KEY(feature_id) REFERENCES features(feature_id),
    FOREIGN KEY(country_id) REFERENCES countries(country_id),
