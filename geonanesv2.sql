@@ -226,7 +226,7 @@ CREATE TABLE languages(
 INSERT INTO languages(language_name,language_iso1)
    SELECT  language_name,language_iso1
    FROM rawlanguage
-   WHERE language_name IS NOT NULL;
+   WHERE language_name IS NOT NULL and language_iso1 IS NOT NULL;
 
 CREATE TABLE boundry(
    boundry_id      serial    NOT NULL,
