@@ -103,7 +103,7 @@ CREATE TABLE rawhierarchy(
 
 --CREATE DOMAIN pop AS BIGINT CHECK(value > -1);
 CREATE DOMAIN positive_int as BIGINT CHECK(value > 0);
-CREATE DOMAIN bool_ AS INT CHECK(value = 0 or value = 1 or value is null);
+CREATE DOMAIN sqlBool AS INT CHECK(value = 0 or value = 1 or value is null);
 
 CREATE TABLE continents(
    continent_id    serial  NOT NULL,
@@ -150,7 +150,7 @@ CREATE TABLE features(
 INSERT INTO features(code, description,description_two)
    SELECT  DISTINCT feature_codes, feature_description, feature_description_two
    FROM    rawfeature
-   WHERE   code <> 'null';
+   WHERE   feature_codes <> 'null';
 
 CREATE TABLE coordinates(
    coordinates_id        serial      NOT NULL,
