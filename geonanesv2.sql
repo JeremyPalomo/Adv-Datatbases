@@ -269,7 +269,7 @@ CREATE TABLE hierarchy(
    parent          bigint      NOT NULL,
    child           bigint      NOT NULL,
    heirarchy_code            text    NOT NULL,
-   PRIMARY KEY(hierarchy_id)
+   PRIMARY KEY(hierarchy_id),
    FOREIGN KEY(parent) REFERENCES geonames(geoname_id),
    FOREIGN KEY(child) REFERENCES geonames(geoname_id)
 );
