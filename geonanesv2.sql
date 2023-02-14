@@ -202,7 +202,7 @@ INSERT INTO countries(geoname_id, iso, iso3, iso_code, fips, name, capital, area
 CREATE TABLE geonames(
    geoname_id      bigint      NOT NULL,
    geoname         text    NOT NULL,
-   coordinate_id        bigint      NOT NULL,
+   coordinates_id        bigint      NOT NULL,
    feature_id      bigint      NOT NULL,
    country_id      bigint      NOT NULL,
    population      bigint     NOT NULL,
