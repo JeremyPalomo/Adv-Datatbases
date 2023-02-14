@@ -105,30 +105,6 @@ CREATE TABLE rawhierarchy(
 CREATE DOMAIN positive_int as BIGINT CHECK(value > 0);
 CREATE DOMAIN bool_ AS INT CHECK(value = 0 or value = 1 or value is null);
 
-CREATE TABLE countries(
-   country_id      serial  NOT NULL,
-   geoname_id      text      NOT NULL,
-   iso             text    NOT NULL,
-   iso3            text    NOT NULL,
-   iso_code        text    NOT NULL    UNIQUE,
-   fips            text,
-   name            text    NOT NULL,
-   capital         text,
-   area            double precision NOT NULL,
-   population      BIGINT NOT NULL,
-   tld             text,
-   currency_id     text      NOT NULL,
-   languages       text,      
-   neighbors       text,
-   PRIMARY KEY(country_id),
-   FOREIGN KEY (currency_id) REFERENCES currencies(currency_id)
-);
-
-
-INSERT INTO countries(geoname_id, iso, iso3, iso_code, fips, name, capital, area, population, tld, currency_id, languages, neighbors)
-   SELECT  geonameid, iso, iso3, isocode, fips, name, capital, area, population, tld, 1, languages, neighbors
-   FROM rawcountry;
-
 CREATE TABLE continents(
    continent_id    serial  NOT NULL,
    abrriviation    char(2) NOT NULL,
@@ -276,6 +252,29 @@ INSERT INTO hierarchy(parent, child, heirarchy_code)
    SELECT heirarchy_parent, heirarchy_child, heirarchy_code
    FROM rawhierarchy;
 
+CREATE TABLE countries(
+   country_id      serial  NOT NULL,
+   geoname_id      text      NOT NULL,
+   iso             text    NOT NULL,
+   iso3            text    NOT NULL,
+   iso_code        text    NOT NULL    UNIQUE,
+   fips            text,
+   name            text    NOT NULL,
+   capital         text,
+   area            double precision NOT NULL,
+   population      BIGINT NOT NULL,
+   tld             text,
+   currency_id     text      NOT NULL,
+   languages       text,      
+   neighbors       text,
+   PRIMARY KEY(country_id),
+   FOREIGN KEY (currency_id) REFERENCES currencies(currency_id)
+);
+
+
+INSERT INTO countries(geoname_id, iso, iso3, iso_code, fips, name, capital, area, population, tld, currency_id, languages, neighbors)
+   SELECT  geonameid, iso, iso3, isocode, fips, name, capital, area, population, tld, 1, languages, neighbors
+   FROM rawcountry;
 
 DROP TABLE rawcountry;
 DROP TABLE rawfeature;
