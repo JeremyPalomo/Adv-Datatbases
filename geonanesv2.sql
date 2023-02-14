@@ -191,7 +191,7 @@ CREATE TABLE countries(
    languages       text,      
    neighbors       text,
    PRIMARY KEY(country_id),
-   FOREIGN KEY (currency_id) REFERENCES currencies(currency_id)
+   FOREIGN KEY (currency_id) REFERENCES currency(currency_id)
 );
 
 
