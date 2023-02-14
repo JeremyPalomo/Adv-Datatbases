@@ -175,7 +175,7 @@ CREATE TABLE geonames(
    PRIMARY KEY(geoname_id),
    FOREIGN KEY(feature_id) REFERENCES features(feature_id),
    FOREIGN KEY(country_id) REFERENCES countries(country_id),
-   FOREIGN KEY(timezone_id) REFERENCES timezones(timezone_id)
+   FOREIGN KEY(timezone_id) REFERENCES timezones(timezone_id),
    FOREIGN KEY(coordinate_id) REFERENCES coordinates(coordinate_id)
 );
 
