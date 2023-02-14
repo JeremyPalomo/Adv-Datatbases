@@ -1,1 +1,1 @@
-drop table continents, timezones, features,coordinates,geonames,boundry,languages,alternatenames,currency,hierarchy;
+drop table continents, timezones, features,coordinates,boundry,languages,currency,hierarchy;
