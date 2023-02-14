@@ -88,7 +88,7 @@ CREATE TABLE rawfeature(
 \copy rawfeature from '/var/local/cs4443/geonames/featureCodes_en.txt' with csv delimiter E'\t'
 
 CREATE TABLE rawhierarchy(
-   parent       BIGINT,
+   heirarchy_parent       BIGINT,
    heirarchy_child       BIGINT,
    heirarchy_code        text
 );
@@ -275,7 +275,7 @@ CREATE TABLE hierarchy(
 );
 
 INSERT INTO hierarchy(parent, child, heirarchy_code)
-   SELECT parent, child, heirarchy_code
+   SELECT heirarchy_parent, heirarchy_child, heirarchy_code
    FROM rawhierarchy;
 
 
