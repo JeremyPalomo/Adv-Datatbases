@@ -166,7 +166,7 @@ INSERT INTO coordinates(longitude, latitude)
 CREATE TABLE geonames(
    geoname_id      bigint      NOT NULL,
    geoname         text    NOT NULL,
-   coordinate_id        text      NOT NULL,
+   coordinate_id        bigint      NOT NULL,
    feature_id      text      NOT NULL,
    country_id      text      NOT NULL,
    population      bigint     NOT NULL,
@@ -190,7 +190,7 @@ CREATE TABLE languages(
 INSERT INTO languages(language_name,language_iso1)
    SELECT  language_name,language_iso1
    FROM rawlanguage
-   WHERE name IS NOT NULL;
+   WHERE language_name IS NOT NULL;
 
 CREATE TABLE boundry(
    boundry_id      serial    NOT NULL,
