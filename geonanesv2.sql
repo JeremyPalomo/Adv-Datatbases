@@ -276,7 +276,7 @@ CREATE TABLE hierarchy(
 
 INSERT INTO hierarchy(parent, child, heirarchy_code)
    SELECT heirarchy_parent, heirarchy_child, heirarchy_code
-   FROM rawhierarchy;
+   FROM rawhierarchy where heirarchy_code IS NOT NULL;
 
 
 
