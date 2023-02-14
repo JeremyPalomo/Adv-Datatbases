@@ -1,1 +1,1 @@
-drop table continents, timezones, features,coordinates,boundry,languages,currency on cascade;
+drop table continents, timezones, features,coordinates,boundry,languages,currency CASCADE;
