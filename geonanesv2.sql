@@ -214,7 +214,7 @@ CREATE TABLE geonames(
 CREATE TABLE languages(
    language_id     serial  NOT NULL,
    language_name            text    NOT NULL UNIQUE,
-   language_iso1 text NOT NULL,
+   language_iso1 text  UNIQUE NOT NULL,
    PRIMARY KEY(language_id)
 );
 
@@ -242,7 +242,7 @@ INSERT INTO boundry(iso_code, neighbor)
    FROM n
    WHERE neighbor IS NOT NULL AND isocode IS NOT NULL;
 
-CREATE TABLE alternatenames(
+CREATE TABLE alternate(
    alt_id          serial  NOT NULL,
    geoname_id      bigint      NOT NULL,
    language_id     text      NOT NULL,
@@ -258,7 +258,7 @@ CREATE TABLE alternatenames(
    FOREIGN KEY(language_id) REFERENCES languages(language_iso1)
 );
 
-INSERT INTO alternatenames(alt_id,geoname_id,language_id,alt_name,prefered,short,collquial,historic,_from,_to)
+INSERT INTO alternate(alt_id,geoname_id,language_id,alt_name,prefered,short,collquial,historic,_from,_to)
    SELECT alternate_altid,alternate_geoid,alternate_isolang,alternate_name,
    alternate_prefered,
    alternate_short,
