@@ -18,7 +18,7 @@ CREATE TABLE rawgeonames(
     timezone        text,
     modification    date
 );
-\copy rawgeonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E'\t'
+--\copy rawgeonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E'\t'
 
 CREATE TABLE rawcountry(
     iso             text,
@@ -106,7 +106,7 @@ CREATE TABLE rawhierarchy(
 
 DROP TABLE rawcountry;
 DROP TABLE rawfeature;
-DROP TABLE rawgeonames;
+--DROP TABLE rawgeonames;
 DROP TABLE rawtime;
 DROP TABLE rawalternate;
 DROP TABLE rawlanguage;
