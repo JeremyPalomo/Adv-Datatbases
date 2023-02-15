@@ -46,14 +46,14 @@ CREATE TABLE rawcountry(
 CREATE TABLE rawalternate(
    alternate_altid           int,
    alternate_geoid           int,
-   alternate_isolang         bigint,
+   alternate_isolang         text,
    alternate_name            text,
    alternate_prefered        int,
    alternate_short           int,
    alternate_collquial       int,
    alternate_historic        int,
-   alternate_f               text,
-   alternate_t               text
+   alternate_f               date,
+   alternate_t               date
 );
 
 
@@ -245,7 +245,7 @@ INSERT INTO boundry(iso_code, neighbor)
 CREATE TABLE alternatenames(
    alt_id          serial  NOT NULL,
    geoname_id      bigint      NOT NULL,
-   language_id     bigint      NOT NULL,
+   language_id     text      NOT NULL,
    alt_name        text    NOT NULL,
    prefered        testbool,
    short           testbool,
