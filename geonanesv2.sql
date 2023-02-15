@@ -14,7 +14,7 @@ CREATE TABLE rawgeonames(
     admin4          text,
     jiwjiji          text,
     population     bigint,
-    elevation       bigint,
+    elevation       bigint, 
     dem             bigint,
     timezone        text,
     modification    date
