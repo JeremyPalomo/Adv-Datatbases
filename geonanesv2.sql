@@ -19,7 +19,7 @@ CREATE TABLE rawgeonames(
     timezone        text,
     modification    date
 );
-\copy rawgeonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E'\t'
+\copy rawgeonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E'\t' WHERE geonameid != 8376355
 
 CREATE TABLE rawcountry(
     iso             text,
