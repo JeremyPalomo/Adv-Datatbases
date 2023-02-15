@@ -18,6 +18,7 @@ CREATE TABLE rawgeonames(
     timezone        text,
     modification    date
 );
+\copy rawgeonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E'\t'
 
 CREATE TABLE rawcountry(
     iso             text,
@@ -245,7 +246,7 @@ INSERT INTO boundry(iso_code, neighbor)
 CREATE TABLE alternate(
    alt_id          serial  NOT NULL,
    geoname_id      bigint      NOT NULL,
-   language_id     text,
+   language_id     text NOT NULL,
    alt_name        text    NOT NULL,
    prefered        text,
    short           text,
