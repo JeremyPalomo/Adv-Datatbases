@@ -251,14 +251,22 @@ CREATE TABLE alternatenames(
    short           testbool,
    collquial       testbool,
    historic        testbool,
-   used_from       date,
-   used_to         date,
+   _from       date,
+   _to         date,
    PRIMARY KEY(alt_id),
    FOREIGN KEY(geoname_id) REFERENCES geonames(geoname_id),
    FOREIGN KEY(language_id) REFERENCES languages(language_id)
 );
 
-
+INSERT INTO alternatenames(alt_id,geoname_id,language_id,alt_name,prefered,short,collquial,historic,_from,_to)
+   SELECT alternate_altid,alternate_geoid,alternate_isolang,alternate_name,
+   alternate_prefered,
+   alternate_short,
+   alternate_collquial,
+   alternate_historic,
+   alternate_f,
+   alternate_t
+   FROM rawalternate;
 
 CREATE TABLE hierarchy(
    hierarchy_id    serial  NOT NULL,
