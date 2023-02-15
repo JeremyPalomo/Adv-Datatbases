@@ -12,12 +12,12 @@ CREATE TABLE rawgeonames(
     admin2          text,
     admin3          text,
     admin4          text,
+    jiwjiji          text,
     population     bigint,
     elevation       bigint,
     dem             bigint,
     timezone        text,
     modification    date,
-    jiwjiji          text
 );
 \copy rawgeonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E'\t'
 
