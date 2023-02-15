@@ -14,7 +14,7 @@ CREATE TABLE rawgeonames(
     admin4          text,
     population     bigint,
     elevation       bigint,
-    dem             bigint,
+    --dem             bigint,
     timezone        text,
     modification    date
 );
