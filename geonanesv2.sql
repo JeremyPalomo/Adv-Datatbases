@@ -52,8 +52,8 @@ CREATE TABLE rawalternate(
    alternate_short           int,
    alternate_collquial       int,
    alternate_historic        int,
-   alternate_f               date,
-   alternate_t               date
+   alternate_f               text,
+   alternate_t               text
 );
 
 
@@ -251,8 +251,8 @@ CREATE TABLE alternatenames(
    short           testbool,
    collquial       testbool,
    historic        testbool,
-   _from       date,
-   _to         date,
+   _from       text,
+   _to         text,
    PRIMARY KEY(alt_id),
    FOREIGN KEY(geoname_id) REFERENCES geonames(geoname_id),
    FOREIGN KEY(language_id) REFERENCES languages(language_iso1)
