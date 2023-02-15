@@ -17,7 +17,7 @@ CREATE TABLE rawgeonames(
     elevation       bigint,
     dem             bigint,
     timezone        text,
-    modification    date,
+    modification    date
 );
 \copy rawgeonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E'\t'
 
