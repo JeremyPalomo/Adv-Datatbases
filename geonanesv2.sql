@@ -17,7 +17,7 @@ CREATE TABLE rawgeonames(
     dem             bigint,
     timezone        text,
     modification    date,
-    jiwjiji          text,
+    jiwjiji          text
 );
 \copy rawgeonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E'\t'
 
@@ -288,7 +288,7 @@ INSERT INTO hierarchy(parent, child, heirarchy_code)
 
 DROP TABLE rawcountry;
 DROP TABLE rawfeature;
-DROP TABLE rawgeonames;
+--DROP TABLE rawgeonames;
 DROP TABLE rawtime;
 DROP TABLE rawalternate;
 DROP TABLE rawlanguage;
