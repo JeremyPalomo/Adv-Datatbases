@@ -255,7 +255,7 @@ CREATE TABLE alternatenames(
    _to         date,
    PRIMARY KEY(alt_id),
    FOREIGN KEY(geoname_id) REFERENCES geonames(geoname_id),
-   FOREIGN KEY(language_id) REFERENCES languages(language_id)
+   FOREIGN KEY(language_id) REFERENCES languages(language_iso1)
 );
 
 INSERT INTO alternatenames(alt_id,geoname_id,language_id,alt_name,prefered,short,collquial,historic,_from,_to)
