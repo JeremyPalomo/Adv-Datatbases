@@ -46,7 +46,7 @@ CREATE TABLE rawcountry(
 CREATE TABLE rawalternate(
    alternate_altid           int,
    alternate_geoid           int,
-   alternate_isolang         text,
+   alternate_isolang         bigint,
    alternate_name            text,
    alternate_prefered        int,
    alternate_short           int,
