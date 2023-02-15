@@ -14,9 +14,10 @@ CREATE TABLE rawgeonames(
     admin4          text,
     population     bigint,
     elevation       bigint,
-    --dem             bigint,
+    dem             bigint,
     timezone        text,
-    modification    date
+    modification    date,
+    jiwjiji          text,
 );
 \copy rawgeonames from '/var/local/cs4443/geonames/allCountries.txt' with csv delimiter E'\t'
 
